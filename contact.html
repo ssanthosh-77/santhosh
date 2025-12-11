@@ -22,18 +22,31 @@
   </header>
 
   <main class="container section">
-    <h1>Contact</h1>
-    <p>For enquiries, collaboration, or student supervision, reach out:</p>
-    <ul id="contactInfo" class="contact-block"></ul>
+    <h1>Contact & Collaboration</h1>
+    <div class="grid-2">
+      <div>
+        <h3>Contact Info</h3>
+        <ul id="contactInfo" class="contact-block"></ul>
 
-    <h3>Send a message</h3>
-    <form id="contactForm">
-      <label>Name<input type="text" name="name" required></label>
-      <label>Email<input type="email" name="email" required></label>
-      <label>Message<textarea name="message" rows="5" required></textarea></label>
-      <button type="submit" class="btn">Send</button>
-      <p id="formStatus" class="muted"></p>
-    </form>
+        <h4>Office Hours</h4>
+        <p class="muted">Mon–Fri 10:00 — 16:00 (by appointment)</p>
+
+        <h4>Location</h4>
+        <p class="muted">No.5/27, Sorakkalpettai Village, Vandranthangal Panchayat, Periya Pudur PO, Katpadi, Vellore, Tamil Nadu</p>
+      </div>
+
+      <div>
+        <h3>Send a message</h3>
+        <form id="contactForm">
+          <label>Name<input type="text" name="name" required></label>
+          <label>Email<input type="email" name="email" required></label>
+          <label>Subject<input type="text" name="subject"></label>
+          <label>Message<textarea name="message" rows="6" required></textarea></label>
+          <button type="submit" class="btn">Send</button>
+          <p id="formStatus" class="muted"></p>
+        </form>
+      </div>
+    </div>
   </main>
 
   <footer class="site-footer">
