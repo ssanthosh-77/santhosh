@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Dr. S. Santhosh — Professional Profile</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav container">
+      <div class="brand"><a href="index.html">Dr. S. Santhosh</a></div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="publications.html">Publications</a></li>
+        <li><a href="research.html">Research</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <button class="menu-toggle" aria-label="menu">☰</button>
+    </nav>
+  </header>
+
+  <!-- HERO with circular photo -->
+  <section class="hero parallax" id="hero">
+    <div class="hero-inner container">
+      <div class="hero-left">
+        <img src="profile.jpg" alt="Dr S. Santhosh" class="profile-photo" id="profilePhoto">
+      </div>
+      <div class="hero-right">
+        <h1 id="heroName">Dr. S. Santhosh</h1>
+        <p id="heroTitle">Assistant Professor • Structural Engineering • Researcher</p>
+        <p id="heroShort">Ph.D. (Civil), M.E. (Structural Engg.) — building sustainable, AI-enabled civil engineering solutions.</p>
+        <div class="hero-ctas">
+          <a href="about.html" class="btn">Learn more</a>
+          <a href="contact.html" class="btn ghost">Contact</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PARALLAX INFO SECTIONS -->
+  <main>
+    <section class="section container">
+      <h2>Selected Experience</h2>
+      <div id="experienceList" class="grid-3"></div>
+    </section>
+
+    <section class="parallax parallax-2">
+      <div class="parallax-overlay container">
+        <h2>Research Interests</h2>
+        <p id="researchInterests"></p>
+      </div>
+    </section>
+
+    <section class="section container">
+      <h2>Latest Publications</h2>
+      <div id="latestPubs" class="cards"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <small>&copy; <span id="year"></span> Dr. S. Santhosh — View source on GitHub: <a href="https://github.com/ssanthosh-77/santhosh" target="_blank">ssanthosh-77/santhosh</a></small>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
