@@ -1,4 +1,4 @@
-/* main.js — dynamic content loader and small interactions */
+/* main.js — dynamic content loader, counters, animations */
 const yearEls = document.querySelectorAll('#year,#year2,#year3,#year4,#year5');
 yearEls.forEach(el => el && (el.textContent = new Date().getFullYear()));
 
@@ -10,18 +10,29 @@ document.addEventListener('click', (e)=>{
   }
 });
 
+// small helper
+function el(id){ return document.getElementById(id); }
+
 // load profile JSON and populate pages
 fetch('data/profile.json').then(r => r.json()).then(data => {
-  // HERO
-  const heroName = document.getElementById('heroName');
-  if(heroName) heroName.textContent = data.name + (data.title ? ' — ' + data.title : '');
-  const heroTitle = document.getElementById('heroTitle');
-  if(heroTitle) heroTitle.textContent = data.role;
-  const heroShort = document.getElementById('heroShort');
-  if(heroShort) heroShort.textContent = data.summary;
+  // BASIC
+  const name = data.name || 'Dr. S. Santhosh';
+  document.querySelectorAll('#heroName, #asideName').forEach(n => n && (n.textContent = name));
+  document.querySelectorAll('#heroTitle, #asideRole').forEach(n => n && (n.textContent = data.role || 'Assistant Professor'));
+  if(el('heroShort')) el('heroShort').textContent = data.summary;
+  if(el('aboutSummary')) el('aboutSummary').textContent = data.summary_long;
 
-  // Experience list (index)
-  const expList = document.getElementById('experienceList');
+  // skill badges
+  const skillBadges = el('skillBadges');
+  if(skillBadges && data.skills){
+    skillBadges.innerHTML = data.skills.map(s => `<span class="badge">${s}</span>`).join('');
+  }
+
+  // domains text
+  if(el('domainsText')) el('domainsText').textContent = (data.domains || []).join(' • ');
+
+  // Experience (index)
+  const expList = el('experienceList');
   if(expList && data.experience){
     expList.innerHTML = data.experience.slice(0,3).map(exp => `
       <article class="card">
@@ -31,71 +42,118 @@ fetch('data/profile.json').then(r => r.json()).then(data => {
       </article>`).join('');
   }
 
-  // Research interests (parallax)
-  const researchInterests = document.getElementById('researchInterests');
-  if(researchInterests) researchInterests.textContent = data.research_interests;
+  // counters (animated)
+  document.querySelectorAll('.counter').forEach(c=>{
+    const target = +c.dataset.target || 0;
+    const numEl = c.querySelector('.num');
+    const start = Math.max(0, Math.floor(target * 0.6));
+    let current = start;
+    numEl.textContent = current + '+';
+    const step = Math.max(1, Math.floor((target - start) / 60));
+    const iv = setInterval(()=> {
+      current += step;
+      if(current >= target) { current = target; clearInterval(iv); }
+      numEl.textContent = current + '+';
+    }, 20);
+  });
 
-  // publications (home small)
-  const latestPubs = document.getElementById('latestPubs');
+  // latest publications
+  const latestPubs = el('latestPubs');
   if(latestPubs && data.publications){
-    latestPubs.innerHTML = data.publications.slice(0,3).map(p => `
+    latestPubs.innerHTML = data.publications.slice(0,4).map(p => `
       <article class="card">
         <h4>${p.title}</h4>
-        <small class="muted">${p.venue} ${p.year ? '• ' + p.year : ''}</small>
+        <small class="muted">${(p.authors||'')}${p.venue? ' • ' + p.venue : ''} ${p.year? '• ' + p.year : ''}</small>
         <p class="muted">${p.desc || ''}</p>
       </article>`).join('');
   }
 
-  // about page
-  const aboutSummary = document.getElementById('aboutSummary');
-  if(aboutSummary) aboutSummary.textContent = data.summary_long;
-
-  const qualifications = document.getElementById('qualifications');
-  if(qualifications && data.qualifications){
-    qualifications.innerHTML = '<ul>' + data.qualifications.map(q => `<li><strong>${q.degree}</strong> — ${q.institution} (${q.year || ''})</li>`).join('') + '</ul>';
+  // teaching & projects
+  const tp = el('teachingProjects');
+  if(tp && data.projects){
+    tp.innerHTML = data.projects.slice(0,3).map(p=>`
+      <div class="card">
+        <h4>${p.title}</h4>
+        <p class="muted">${p.desc}</p>
+        ${p.link ? `<p><a href="${p.link}" target="_blank" class="muted">Project link</a></p>` : ''}
+      </div>`).join('');
   }
 
-  const fullExperience = document.getElementById('fullExperience');
-  if(fullExperience && data.experience){
-    fullExperience.innerHTML = data.experience.map(e => `<div class="card"><strong>${e.designation}</strong> — ${e.institution}<br><small class="muted">${e.from} — ${e.to || 'Present'}</small><p>${e.summary || ''}</p></div>`).join('');
+  // about page fields
+  if(el('skillsGrid') && data.skills){
+    el('skillsGrid').innerHTML = data.skills.map(s=>`<div class="skill-pill">${s}</div>`).join('');
+  }
+  if(el('leadership') && data.leadership){
+    el('leadership').innerHTML = data.leadership.map(l=>`<div class="card"><strong>${l.title}</strong><p class="muted">${l.desc}</p></div>`).join('');
+  }
+  if(el('coursesList') && data.courses){
+    el('coursesList').innerHTML = data.courses.map(c=>`<li>${c}</li>`).join('');
   }
 
-  const patentsBooks = document.getElementById('patentsBooks');
-  if(patentsBooks){
-    patentsBooks.innerHTML = (data.patents||[]).map(p=>`<div class="muted">• ${p}</div>`).join('') + (data.books? '<h4>Books</h4>' + data.books.map(b=>`<div>${b}</div>`).join('') : '');
+  // publications page (filter)
+  const pubList = el('pubList');
+  function renderPubs(filter='all'){
+    if(!pubList) return;
+    const pubs = data.publications || [];
+    const filtered = pubs.filter(p=>{
+      if(filter==='all') return true;
+      return (p.type||'other').toLowerCase() === filter;
+    });
+    pubList.innerHTML = filtered.map(p=>`
+      <div class="pub card">
+        <h4>${p.title}</h4>
+        <small class="muted">${p.authors || ''} • ${p.venue || ''} ${p.year? ' • ' + p.year : ''}</small>
+        <p class="muted">${p.desc || ''}</p>
+        ${p.pdf? `<p><a href="${p.pdf}" download>Download PDF</a></p>` : ''}
+      </div>`).join('');
   }
-
-  // publications page
-  const pubList = document.getElementById('pubList');
-  if(pubList && data.publications){
-    pubList.innerHTML = data.publications.map(p => `<div class="pub"><h4>${p.title}</h4><small class="muted">${p.authors || ''} • ${p.venue} ${p.year? '• ' + p.year : ''}</small><p>${p.desc || ''}</p></div>`).join('');
+  renderPubs();
+  const pubFilter = el('pubFilter');
+  if(pubFilter){
+    pubFilter.addEventListener('change', e => renderPubs(e.target.value));
   }
 
   // research page
-  const researchList = document.getElementById('researchList');
-  if(researchList && data.research_projects){
-    researchList.innerHTML = data.research_projects.map(r => `<div class="card"><strong>${r.title}</strong><p class="muted">${r.desc}</p></div>`).join('');
+  if(el('researchList') && data.research_projects){
+    el('researchList').innerHTML = data.research_projects.map(r=>`<div class="card"><strong>${r.title}</strong><p class="muted">${r.desc}</p></div>`).join('');
   }
-  const phdTitle = document.getElementById('phdTitle');
-  if(phdTitle) phdTitle.textContent = data.phd_title;
+  if(el('phdTitle')) el('phdTitle').textContent = data.phd_title || '';
+  if(el('phdAbstract')) el('phdAbstract').textContent = data.phd_abstract || '';
 
-  // contact page
-  const contactInfo = document.getElementById('contactInfo') || document.getElementById('asideContact') || document.getElementById('contactList');
+  // supervision
+  if(el('supervisionList') && data.supervision){
+    el('supervisionList').innerHTML = data.supervision.map(s=>`<div class="card"><strong>${s.student}</strong><p class="muted">${s.topic}</p></div>`).join('');
+  }
+
+  // contact blocks
+  const contactInfo = el('contactInfo') || el('asideContact') || el('contactList');
   if(contactInfo && data.contact){
     contactInfo.innerHTML = Object.entries(data.contact).map(([k,v]) => `<li><strong>${k}:</strong> ${v}</li>`).join('');
   }
 
-  // simple contact form handler (no backend — instructs how to wire)
-  const contactForm = document.getElementById('contactForm');
-  if(contactForm){
-    contactForm.addEventListener('submit',(ev)=>{
-      ev.preventDefault();
-      const status = document.getElementById('formStatus');
-      status.textContent = 'This form is client-only. To receive messages, configure a server endpoint or use GitHub Forms / Formspree. Example: https://formspree.io/';
-      status.classList.add('muted');
-    });
+  // socials links (if available)
+  if(data.links){
+    if(el('githubLink')) el('githubLink').href = data.links.github || '#';
+    if(el('linkedinLink')) el('linkedinLink').href = data.links.linkedin || '#';
   }
-})
-.catch(err=>{
+
+  // Add subtle reveal animations for cards
+  document.querySelectorAll('.animated-grid .card').forEach((card, i) => {
+    card.style.opacity = 0;
+    card.style.transform = 'translateY(18px)';
+    setTimeout(()=>{ card.style.transition = 'opacity .6s ease, transform .6s cubic-bezier(.2,.9,.2,1)'; card.style.opacity=1; card.style.transform='none'; }, 120*i);
+  });
+
+}).catch(err=>{
   console.warn('Could not load data/profile.json', err);
+});
+
+// CONTACT FORM handler (client only)
+document.addEventListener('submit', (ev)=>{
+  if(ev.target && ev.target.id === 'contactForm'){
+    ev.preventDefault();
+    const status = document.getElementById('formStatus');
+    status.textContent = 'This is a static demo. To receive messages, configure Formspree / Netlify Forms / a server endpoint. Example: https://formspree.io/';
+    status.classList.add('muted');
+  }
 });
