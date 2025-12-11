@@ -1,0 +1,65 @@
+{
+  "name": "Dr. S. Santhosh",
+  "role": "Assistant Professor • Structural Engineering • Researcher",
+  "summary": "Assistant Professor and researcher focused on sustainable materials, lightweight concrete, and AI-assisted material property prediction. Experienced in teaching, lab supervision and academic leadership.",
+  "summary_long": "Dr. S. Santhosh is an Assistant Professor with experience in Structural Engineering, Construction Management and materials research. He has authored multiple publications, filed design patents, guided student projects and contributed to academic leadership and quality assurance activities.",
+  "phd_title": "Effect of Oil Palm Shell in Light Weight Concrete Using M-Sand as Fine Aggregate",
+  "phd_abstract": "A study on the mechanical and durability performance of lightweight concrete mixes using oil palm shell and modern mix design techniques. Includes experimental testing and statistical analysis.",
+  "research_interests": "Lightweight concrete, sustainable construction materials, AI/ML for material property prediction, 3D-printable concrete mixes, structural health monitoring.",
+  "domains": ["Structural Engineering","Materials & Concrete","AI & Machine Learning","MATLAB & Python","Construction Management"],
+  "skills": ["Concrete Mix Design","Experimental Testing","AI/ML (Python)","MATLAB","Finite Element Concepts","Data Analysis","Project Supervision","Academic Leadership"],
+  "links": {
+    "github": "https://github.com/ssanthosh-77",
+    "linkedin": ""
+  },
+  "contact": {
+    "Email": "er.ssanthosh77@gmail.com",
+    "Phone": "+91-7639343588",
+    "Address": "No.5/27, Sorakkalpettai Village, Vandranthangal Panchayat, Periya Pudur PO, Katpadi, Vellore, Tamil Nadu"
+  },
+  "qualifications": [
+    {"degree":"Ph.D. (Civil Engineering)","institution":"Dr. M G R Educational and Research Institute","year":"2018 - 2023"},
+    {"degree":"M.E. (Structural Engineering)","institution":"GIT, Melvisharam (Anna University)","year":"2014 - 2016"},
+    {"degree":"B.E. (Civil Engineering)","institution":"SBCEC, Arni (Anna University)","year":"2009 - 2013"}
+  ],
+  "experience": [
+    {"designation":"Assistant Professor","institution":"Adhiparaskthi College of Engineering, Kalavai","from":"22-08-2024","to":null,"summary":"Teaching and research in structural engineering and materials science."},
+    {"designation":"Assistant Professor & HOD","institution":"Sri Balaji Chockalingam Engineering College, Arni","from":"22-06-2016","to":"31-07-2024","summary":"Head of department handling academics, labs and student mentorship."},
+    {"designation":"Lecturer","institution":"Sri Balaji Chockalingam Engineering College, Arni","from":"05-03-2013","to":"26-03-2014","summary":""}
+  ],
+  "leadership": [
+    {"title":"Head of Department (ECE) - Academic Coordination","desc":"Coordinated curriculum, examinations, and departmental growth initiatives."},
+    {"title":"IQAC Coordinator & Controller of Examinations","desc":"Managed quality documentation and exam processes for university compliance."}
+  ],
+  "courses": ["Structural Analysis","Concrete Technology","Design of Reinforced Concrete Structures","Introduction to AI & Data Science","Experimental Methods in Engineering"],
+  "projects": [
+    {"title":"Lightweight Concrete with Oil Palm Shell","desc":"Developed and characterized mixes using waste aggregates for low-weight structural elements."},
+    {"title":"AI model for compressive strength prediction","desc":"ML pipeline for predicting concrete compressive strength using material parameters.","link":""},
+    {"title":"3D-printable mortar research","desc":"Optimization of rheology and setting time for printable mixtures.","link":""}
+  ],
+  "patents": [
+    "Portable Wind Tunnel Device for Airflow Testing",
+    "Vibration Analysis Device for Rotating Machinery",
+    "Spiral Tube Heat Exchanger"
+  ],
+  "books": [
+    "Essential Concepts in Structural Engineering (2025)",
+    "Energy Efficient Buildings (2025)",
+    "Sustainable Engineering with AI (2024)",
+    "Cost Control in Building Design and Construction (2024)"
+  ],
+  "publications": [
+    {"title":"Utilization of Oil Palm Shell in Light Weight Reinforced Concrete","venue":"European Chemical Bulletin","year":"2023","desc":"Scopus indexed paper on lightweight concrete.","type":"journal"},
+    {"title":"An Anova-Based Numerical Analysis of WHA Partial Replacement Concrete","venue":"International Journal of Membrane Science and Technology","year":"2023","type":"journal"},
+    {"title":"Portable Wind Tunnel Device — Indian Design Patent","venue":"IPR Office","year":"2022","desc":"Design patent", "type":"patent"},
+    {"title":"Conference: AI-based compressive strength prediction","venue":"ICEM 2024","year":"2024","desc":"Conference paper on ML in materials", "type":"conference"}
+  ],
+  "research_projects": [
+    {"title":"Lightweight concrete with Oil Palm Shell","desc":"Development and characterization of lightweight concrete mixes using waste aggregates."},
+    {"title":"AI models for predicting compressive strength","desc":"Probabilistic forecasting and explainable modelling using deep learning."}
+  ],
+  "supervision": [
+    {"student":"M.S. Candidate — R. Kumar","topic":"Strength prediction of geopolymer concrete"},
+    {"student":"UG Project — S. Ramesh","topic":"3D printing mortar mix design"}
+  ]
+}
