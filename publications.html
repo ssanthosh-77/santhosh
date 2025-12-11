@@ -22,8 +22,19 @@
   </header>
 
   <main class="container section">
-    <h1>Publications & Books</h1>
-    <div id="pubList" class="pub-list"></div>
+    <h1>Publications & Patents</h1>
+    <div class="controls">
+      <label>Filter:
+        <select id="pubFilter">
+          <option value="all">All</option>
+          <option value="journal">Journal</option>
+          <option value="conference">Conference</option>
+          <option value="patent">Patent</option>
+        </select>
+      </label>
+    </div>
+
+    <div id="pubList" class="pub-list animated-grid"></div>
   </main>
 
   <footer class="site-footer">
