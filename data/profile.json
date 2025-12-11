@@ -28,8 +28,8 @@
     {"designation":"Lecturer","institution":"Sri Balaji Chockalingam Engineering College, Arni","from":"05-03-2013","to":"26-03-2014","summary":""}
   ],
   "leadership": [
-    {"title":"Head of Department (ECE) - Academic Coordination","desc":"Coordinated curriculum, examinations, and departmental growth initiatives."},
-    {"title":"IQAC Coordinator & Controller of Examinations","desc":"Managed quality documentation and exam processes for university compliance."}
+    {"title":"ECO Club Coordinator- Academic Coordination","desc":"ECO CLUB & Infrastructure Development"},
+    {"title":"ISO & NAAC","desc":"Managed quality documentation and Institute quality enhancement."}
   ],
   "courses": ["Structural Analysis","Concrete Technology","Design of Reinforced Concrete Structures","Introduction to AI & Data Science","Experimental Methods in Engineering"],
   "projects": [
